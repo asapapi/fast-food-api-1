@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class FastFoodService {
@@ -26,5 +27,20 @@ public class FastFoodService {
         order.setLastUpdated(localDate);
         order.setCreatedAt(localDate);
         return fastFoodRepository.save(order);
+    }
+
+    public List<Order> getAll() {
+    return fastFoodRepository.findAll();
+    }
+
+    public Order getById(Long id) {
+        return fastFoodRepository.findById(id).get();
+    }
+
+    public Order updateById(long id, Order order) {
+        Order findOrder = getById(id);
+        findOrder.update(order);
+
+        return fastFoodRepository.save(findOrder);
     }
 }

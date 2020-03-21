@@ -8,6 +8,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name="orders")
+
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,6 +20,7 @@ public class Order {
     @JsonFormat(pattern = "yyyy-mm-dd hh:mm:ss")
     private LocalDate createdAt;
     @Column(name="status")
+    @Enumerated(EnumType.STRING)
     private Status status;
     @Column(name="description")
     private String description;
@@ -148,5 +150,14 @@ public class Order {
     @Override
     public int hashCode() {
         return Objects.hash(id, customerName, createdAt, status, description, note, lastUpdated);
+    }
+
+    public void update(Order order) {
+        if (order.getId()!=null)this.setId(order.getId());
+        if (order.getCustomerName()!=null)this.setCustomerName(order.getCustomerName());
+        if (order.getDescription()!=null)this.setDescription(order.getDescription());
+        if (order.getNote()!= null) this.setNote(order.getNote());
+        if (order.getStatus()!= null)this.setStatus(order.getStatus());
+        this.setLastUpdated(LocalDate.now());
     }
 }
