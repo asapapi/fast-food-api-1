@@ -13,18 +13,27 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest
 public class fastFoodServicesTest {
 
-   @Autowired
-   FastFoodRepository fastFoodRepository;
+    @Autowired
+    FastFoodRepository fastFoodRepository;
 
 
-   @Test
-    void createAndOrder(){
+    @Test
+    void createAndOrder() {
 
-       Order order = new Order("Asahi", "BigAzzBurger");
-       FastFoodService fastFoodService = new FastFoodService(fastFoodRepository);
-       assertNotNull(fastFoodService.createOrder(order).getId());
+        Order order = new Order("Asahi", "BigAzzBurger");
+        FastFoodService fastFoodService = new FastFoodService(fastFoodRepository);
+        assertNotNull(fastFoodService.createOrder(order).getId());
 
-   }
-
+    }
+//
+//    @Test
+//    void getAllOrders(){
+//       Order order = new Order("Asahi", "BigAzzBurger");
+//       Order order2 = new Order("Asahi", "BigAzzBurger");
+//       Order order3 = new Order("Asahi", "BigAzzBurger");
+//
+//
+//
+//    }
 
 }
